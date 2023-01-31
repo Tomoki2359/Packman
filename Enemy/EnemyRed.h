@@ -1,16 +1,11 @@
 #pragma once
 #include "../Engine/GameObject.h"
-#include "../Stage.h"
-
+#include "Enemy.h"
+class Dijkstra;
 //◆◆◆を管理するクラス
-class EnemyRed : public GameObject
+class EnemyRed : public Enemy
 {
-    int hModel_;    //モデル番号
-
-    int map_[15][15];
-
-    Stage* pStage;
-
+    Dijkstra* pDij_;
 public:
     //コンストラクタ
     EnemyRed(GameObject* parent);
@@ -18,15 +13,5 @@ public:
     //デストラクタ
     ~EnemyRed();
 
-    //初期化
-    void Initialize() override;
-
-    //更新
-    void Update() override;
-
-    //描画
-    void Draw() override;
-
-    //開放
-    void Release() override;
+    int EnemyMove() override;
 };

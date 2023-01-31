@@ -1,10 +1,16 @@
 #include "Enemy.h"
 #include "../Engine/Model.h"
 #include "../Engine/Input.h"
+#include "../Engine/Global.h"
+
 //コンストラクタ
 Enemy::Enemy(GameObject* parent)
     :GameObject(parent, "Enemy"), hModel_(-1)
 {
+}
+
+Enemy::Enemy(GameObject* parent, std::string name)
+    : GameObject(parent, name){
 }
 
 //デストラクタ
@@ -18,11 +24,16 @@ void Enemy::Initialize()
     //モデルデータのロード
     hModel_ = Model::Load("Pacman.fbx");
     assert(hModel_ >= 0);
-    transform_.position_.x = 1.5f;
+    transform_.position_.x = 10.5f;
     transform_.position_.z = 1.5f;
 
     pStage = (Stage*)FindObject("Stage");
     assert(pStage != nullptr);
+
+    pPlayer_ = (Player*)FindObject("Player");
+    assert(pPlayer_ != nullptr);
+
+    pMove = new Move;
 
 }
 
@@ -32,26 +43,8 @@ void Enemy::Update()
     //移動前の位置ベクトル
     XMVECTOR prevPosition = XMLoadFloat3(&transform_.position_);
 
-    if (Input::IsKey(DIK_UP))
-    {
-        //何らかの処理
-        transform_.position_.z += 0.3f;
-    }
-    if (Input::IsKey(DIK_DOWN))
-    {
-        //何らかの処理
-        transform_.position_.z -= 0.3f;
-    }
-    if (Input::IsKey(DIK_LEFT))
-    {
-        //何らかの処理
-        transform_.position_.x -= 0.3f;
-    }
-    if (Input::IsKey(DIK_RIGHT))
-    {
-        //何らかの処理
-        transform_.position_.x += 0.3f;
-    }
+    pMove->MoveSelect(EnemyMove(), &transform_.position_);
+
     //現在の位置ベクトル
     XMVECTOR nowPosition = XMLoadFloat3(&transform_.position_);
 
@@ -145,4 +138,5 @@ void Enemy::Draw()
 //開放
 void Enemy::Release()
 {
+    SAFE_DELETE(pMove);
 }

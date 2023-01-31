@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Engine/Model.h"
 #include "Engine/Input.h"
+#include "Engine/Global.h"
 //コンストラクタ
 Player::Player(GameObject* parent)
     :GameObject(parent, "Player"), hModel_(-1),move_(-1)
@@ -150,6 +151,7 @@ void Player::Draw()
 //開放
 void Player::Release()
 {
+    SAFE_DELETE(pMove);
 }
 
 //void Player::PreviousMove()

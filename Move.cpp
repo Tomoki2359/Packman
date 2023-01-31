@@ -2,7 +2,7 @@
 
 Move::Move()
 {
-	speed_ = 0.2f;
+	speed_ = 1.0f;
 }
 
 void Move::MoveSelect(int move, XMFLOAT3* trans)

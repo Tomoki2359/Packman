@@ -30,4 +30,6 @@ public:
 
     ;//‚»‚±‚Í•ÇH
     bool IsWall(int x, int z);
+
+    int GetType(int x, int y) { return map_[x][y]; };
 };
