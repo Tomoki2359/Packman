@@ -91,6 +91,7 @@
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
+    <ClCompile Include="Aster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -158,6 +159,7 @@
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Dijkstra.h" />
+    <ClInclude Include="Aster.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

@@ -2,10 +2,12 @@
 #include "../Engine/GameObject.h"
 #include "Enemy.h"
 class Dijkstra;
+class Aster;
 //◆◆◆を管理するクラス
 class EnemyRed : public Enemy
 {
     Dijkstra* pDij_;
+    Aster* pAst_;
 public:
     //コンストラクタ
     EnemyRed(GameObject* parent);
@@ -14,4 +16,6 @@ public:
     ~EnemyRed();
 
     int EnemyMove() override;
+
+    void Init() override;
 };

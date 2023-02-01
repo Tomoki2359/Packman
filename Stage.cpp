@@ -22,7 +22,8 @@ void Stage::Initialize()
 	//モデルデータのロード
 	hModel_[1] = Model::Load("Wall.fbx");
 	assert(hModel_ [1]>= 1);
-
+	hModel_[2] = Model::Load("BoxDefault.fbx");
+	assert(hModel_[2] >= 2);
 	CsvReader csv;
 	csv.Load("Map.csv");
 	for (int x = 0; x < 15; x++)

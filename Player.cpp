@@ -25,7 +25,7 @@ void Player::Initialize()
     pStage = (Stage*)FindObject("Stage");
     assert(pStage != nullptr);
 
-    pMove = new Move();
+    pMove = new Move(pStage);
 
 }
 
@@ -97,43 +97,46 @@ void Player::Update()
         transform_.rotate_.y = angle * 180.0f / 3, 14;
     }
 
-    //•Ç‚Æ‚ÌÕ“Ë”»’è
-    int checkX, checkZ;
+    ////•Ç‚Æ‚ÌÕ“Ë”»’è
+    //int checkX, checkZ;
 
-    //‰E
-    checkX = (int)(transform_.position_.x + 0.3f);
-    checkZ = (int)(transform_.position_.z);
-    if (pStage->IsWall((int)checkX, (int)checkZ))
-    {
-        //XMStoreFloat3(&transform_.position_, prevPosition);
-        transform_.position_.x = (float)((int)(transform_.position_.x + 0.5f)) - 0.3f;
-    }
+    ////‰E
+    //checkX = (int)(transform_.position_.x + 0.3f);
+    //checkZ = (int)(transform_.position_.z);
+    //if (pStage->IsWall((int)checkX, (int)checkZ))
+    //{
+    //    //XMStoreFloat3(&transform_.position_, prevPosition);
+    //    transform_.position_.x = (float)((int)(transform_.position_.x + 0.5f)) - 0.3f;
+    //}
 
-    //¶
-    checkX = (int)(transform_.position_.x - 0.3f);
-    checkZ = (int)(transform_.position_.z);
-    if (pStage->IsWall((int)checkX, (int)checkZ))
-    {
-        //XMStoreFloat3(&transform_.position_, prevPosition);
-        transform_.position_.x = (float)((int)(transform_.position_.x - 0.5f)) + 0.3f;
-    }
+    ////¶
+    //checkX = (int)(transform_.position_.x - 0.3f);
+    //checkZ = (int)(transform_.position_.z);
+    //if (pStage->IsWall((int)checkX, (int)checkZ))
+    //{
+    //    //XMStoreFloat3(&transform_.position_, prevPosition);
+    //    transform_.position_.x = (float)((int)(transform_.position_.x - 0.5f)) + 0.3f;
+    //}
 
-    //ã
-    checkX = (int)(transform_.position_.x);
-    checkZ = (int)(transform_.position_.z + 0.3f);
-    if (pStage->IsWall((int)checkX, (int)checkZ))
+    ////ã
+    //checkX = (int)(transform_.position_.x);
+    //checkZ = (int)(transform_.position_.z + 0.3f);
+    //if (pStage->IsWall((int)checkX, (int)checkZ))
+    //{
+    //    XMStoreFloat3(&transform_.position_, prevPosition);
+    //}
+
+    ////‰º
+    //checkX = (int)(transform_.position_.x);
+    //checkZ = (int)(transform_.position_.z - 0.3f);
+    //if (pStage->IsWall((int)checkX, (int)checkZ))
+    //{
+    //    XMStoreFloat3(&transform_.position_, prevPosition);
+    //}
+    if (pStage->IsWall((int)transform_.position_.x, (int)transform_.position_.z))
     {
         XMStoreFloat3(&transform_.position_, prevPosition);
     }
-
-    //‰º
-    checkX = (int)(transform_.position_.x);
-    checkZ = (int)(transform_.position_.z - 0.3f);
-    if (pStage->IsWall((int)checkX, (int)checkZ))
-    {
-        XMStoreFloat3(&transform_.position_, prevPosition);
-    }
-
     /*
     if (pStage->IsWall((int)transform_.position_.x, (int)transform_.position_.z))
     {

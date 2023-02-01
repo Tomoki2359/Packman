@@ -3,6 +3,12 @@
 #include "Move.h"
 #include <cstdlib>
 
+namespace
+{
+	int move = -1;
+	float dis = 0.3f;
+}
+
 //コンストラクタ
 Dijkstra::Dijkstra()
 {
@@ -26,7 +32,7 @@ int Dijkstra::GetDijkstra(XMFLOAT3 Pos_, XMFLOAT3 Des, Stage* pStage)
 			else
 			{
 				Dij_[x][z].Dis_ = abs((Pos_.x - x + Pos_.z - z));
-				//pStage->SetType(x, z, 0);
+				pStage->SetType(x, z, 0);
 			}
 		}
 	}
@@ -34,16 +40,16 @@ int Dijkstra::GetDijkstra(XMFLOAT3 Pos_, XMFLOAT3 Des, Stage* pStage)
 	//目的地についていない場合の処理
 	if (Des.x != Pos_.x || Des.z != Pos_.z)
 	{
-		SearchDistance(Des, 1, pStage,Pos_);
+		SearchDistance(Pos_, 1, pStage,Des);
 		
 		//目的地にたどり着いたら
 		if (Dij_[(int)Des.x][(int)Des.z].count_ != 9999)
 		{
-			//ChangeDraw(Des, pStage);
+			ChangeDraw(Des, pStage);
 			return MoveDirection(Des);
 		}
 	}
-	return -1;
+	return move;
 }
 
 //現在地からの距離の調査
@@ -59,6 +65,7 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 	switch (pStage->GetType(Pos.x + 1, Pos.z))
 	{
 	case 0:
+	case 2:
 		if (Dij_[(int)Pos.x + 1][(int)Pos.z].count_ > count)
 		{
 			Dij_[(int)Pos.x + 1][(int)Pos.z].count_ = count;
@@ -72,6 +79,7 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 	switch (pStage->GetType(Pos.x - 1, Pos.z))
 	{
 	case 0:
+	case 2:
 		if (Dij_[(int)Pos.x - 1][(int)Pos.z].count_ > count)
 		{
 			Dij_[(int)Pos.x - 1][(int)Pos.z].count_ = count;
@@ -85,6 +93,7 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 	switch (pStage->GetType(Pos.x, Pos.z + 1))
 	{
 	case 0:
+	case 2:
 		if (Dij_[(int)Pos.x][(int)Pos.z + 1].count_ > count)
 		{
 			Dij_[(int)Pos.x][(int)Pos.z + 1].count_ = count;
@@ -98,6 +107,7 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 	switch (pStage->GetType(Pos.x, Pos.z - 1))
 	{
 	case 0:
+	case 2:
 		if (Dij_[(int)Pos.x][(int)Pos.z - 1].count_ > count)
 		{
 			Dij_[(int)Pos.x][(int)Pos.z - 1].count_ = count;
@@ -113,7 +123,7 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 //目的地から自分の場所までの最短距離の道に変更
 void Dijkstra::ChangeDraw(XMFLOAT3 Pos, Stage* pStage)
 {
-	//pStage->SetType(Pos.x, Pos.z, 2);
+	pStage->SetType(Pos.x, Pos.z, 2);
 	if (Dij_[(int)Pos.x][(int)Pos.z].count_ == 0)
 	{
 		return;
@@ -138,27 +148,24 @@ void Dijkstra::ChangeDraw(XMFLOAT3 Pos, Stage* pStage)
 
 int Dijkstra::MoveDirection(XMFLOAT3 Pos)
 {
-	if (Dij_[(int)Pos.x][(int)Pos.z].count_ == 0)
-	{
-	//	return -1;
-	}
-	if (Dij_[(int)Pos.x + 1][(int)Pos.z].count_ < Dij_[(int)Pos.x][(int)Pos.z].count_)
-	{
-		return LEFT_MOVE;
-	}
 	if (Dij_[(int)Pos.x - 1][(int)Pos.z].count_ < Dij_[(int)Pos.x][(int)Pos.z].count_)
 	{
-		return RIGHT_MOVE;
+		move = LEFT_MOVE;
 	}
-	if (Dij_[(int)Pos.x][(int)Pos.z + 1].count_ < Dij_[(int)Pos.x][(int)Pos.z].count_)
+	else if (Dij_[(int)Pos.x + 1][(int)Pos.z].count_ < Dij_[(int)Pos.x][(int)Pos.z].count_)
 	{
-		return BACK_MOVE;
+		move = RIGHT_MOVE;
 	}
-	if (Dij_[(int)Pos.x][(int)Pos.z - 1].count_ < Dij_[(int)Pos.x][(int)Pos.z].count_)
+	else if (Dij_[(int)Pos.x][(int)Pos.z - 1].count_ < Dij_[(int)Pos.x][(int)Pos.z].count_)
 	{
-		return PREVIOUS_MOVE;
+		move = BACK_MOVE;
+	}
+	else if (Dij_[(int)Pos.x][(int)Pos.z + 1].count_ < Dij_[(int)Pos.x][(int)Pos.z].count_)
+	{
+		move = PREVIOUS_MOVE;
 	}
 	//return -1;
+	return move;
 }
 
 void Dijkstra::Reset()

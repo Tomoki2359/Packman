@@ -4,7 +4,7 @@
 //◆◆◆を管理するクラス
 class Stage : public GameObject
 {
-    int hModel_[2];    //モデル番号
+    int hModel_[3];    //モデル番号
 
     int map_[15][15];
 
@@ -32,4 +32,6 @@ public:
     bool IsWall(int x, int z);
 
     int GetType(int x, int y) { return map_[x][y]; };
+
+    void SetType(int x, int y , int t) { map_[x][y] = t; };
 };

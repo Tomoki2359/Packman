@@ -40,4 +40,6 @@ public:
     void Release() override;
 
     virtual int EnemyMove() = 0;
+
+    virtual void Init() {};
 };

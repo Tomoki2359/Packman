@@ -1,8 +1,14 @@
 #include "Move.h"
 
-Move::Move()
+namespace
 {
-	speed_ = 1.0f;
+    Stage* pStage_;
+}
+
+Move::Move(Stage* pStage)
+{
+	speed_ = 0.2f;
+    pStage_ = pStage;
 }
 
 void Move::MoveSelect(int move, XMFLOAT3* trans)

@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/Direct3D.h"
+#include "Stage.h"
 enum MOVE
 {
     PREVIOUS_MOVE = 0,
@@ -12,7 +12,7 @@ class Move
 {
     float speed_;
 public:
-    Move();
+    Move(Stage* pStage);
 
     void MoveSelect(int move, XMFLOAT3* trans);
 
@@ -23,5 +23,7 @@ public:
     void LeftMove(XMFLOAT3* trans);
 
     void RightMove(XMFLOAT3* trans);
+
+    void SetSpeed(float s) { speed_ = s; };
 };
 

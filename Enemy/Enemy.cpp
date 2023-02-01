@@ -24,8 +24,6 @@ void Enemy::Initialize()
     //モデルデータのロード
     hModel_ = Model::Load("Pacman.fbx");
     assert(hModel_ >= 0);
-    transform_.position_.x = 10.5f;
-    transform_.position_.z = 1.5f;
 
     pStage = (Stage*)FindObject("Stage");
     assert(pStage != nullptr);
@@ -33,7 +31,9 @@ void Enemy::Initialize()
     pPlayer_ = (Player*)FindObject("Player");
     assert(pPlayer_ != nullptr);
 
-    pMove = new Move;
+    pMove = new Move(pStage);
+
+    Init();
 
 }
 
@@ -84,43 +84,47 @@ void Enemy::Update()
         transform_.rotate_.y = angle * 180.0f / 3, 14;
     }
 
-    //壁との衝突判定
-    int checkX, checkZ;
+    ////壁との衝突判定
+    //int checkX, checkZ;
 
-    //右
-    checkX = (int)(transform_.position_.x + 0.3f);
-    checkZ = (int)(transform_.position_.z);
-    if (pStage->IsWall((int)checkX, (int)checkZ))
-    {
-        //XMStoreFloat3(&transform_.position_, prevPosition);
-        transform_.position_.x = (float)((int)(transform_.position_.x + 0.5f)) - 0.3f;
-    }
+    ////右
+    //checkX = (int)(transform_.position_.x + 0.3f);
+    //checkZ = (int)(transform_.position_.z);
+    //if (pStage->IsWall((int)checkX, (int)checkZ))
+    //{
+    //    //XMStoreFloat3(&transform_.position_, prevPosition);
+    //    transform_.position_.x = (float)((int)(transform_.position_.x + 0.5f)) - 0.3f;
+    //}
 
-    //左
-    checkX = (int)(transform_.position_.x - 0.3f);
-    checkZ = (int)(transform_.position_.z);
-    if (pStage->IsWall((int)checkX, (int)checkZ))
-    {
-        //XMStoreFloat3(&transform_.position_, prevPosition);
-        transform_.position_.x = (float)((int)(transform_.position_.x - 0.5f)) + 0.3f;
-    }
+    ////左
+    //checkX = (int)(transform_.position_.x - 0.3f);
+    //checkZ = (int)(transform_.position_.z);
+    //if (pStage->IsWall((int)checkX, (int)checkZ))
+    //{
+    //    //XMStoreFloat3(&transform_.position_, prevPosition);
+    //    transform_.position_.x = (float)((int)(transform_.position_.x - 0.5f)) + 0.3f;
+    //}
 
-    //上
-    checkX = (int)(transform_.position_.x);
-    checkZ = (int)(transform_.position_.z + 0.3f);
-    if (pStage->IsWall((int)checkX, (int)checkZ))
+    ////上
+    //checkX = (int)(transform_.position_.x);
+    //checkZ = (int)(transform_.position_.z + 0.3f);
+    //if (pStage->IsWall((int)checkX, (int)checkZ))
+    //{
+    //    XMStoreFloat3(&transform_.position_, prevPosition);
+    //}
+
+    ////下
+    //checkX = (int)(transform_.position_.x);
+    //checkZ = (int)(transform_.position_.z - 0.3f);
+    //if (pStage->IsWall((int)checkX, (int)checkZ))
+    //{
+    //    XMStoreFloat3(&transform_.position_, prevPosition);
+    //}
+
+    if (pStage->IsWall((int)transform_.position_.x, (int)transform_.position_.z))
     {
         XMStoreFloat3(&transform_.position_, prevPosition);
     }
-
-    //下
-    checkX = (int)(transform_.position_.x);
-    checkZ = (int)(transform_.position_.z - 0.3f);
-    if (pStage->IsWall((int)checkX, (int)checkZ))
-    {
-        XMStoreFloat3(&transform_.position_, prevPosition);
-    }
-
     /*
     if (pStage->IsWall((int)transform_.position_.x, (int)transform_.position_.z))
     {
