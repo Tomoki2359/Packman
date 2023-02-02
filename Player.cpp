@@ -2,6 +2,12 @@
 #include "Engine/Model.h"
 #include "Engine/Input.h"
 #include "Engine/Global.h"
+#include "Enemy/Trap.h"
+namespace
+{
+    Trap* pTrap;
+}
+
 //コンストラクタ
 Player::Player(GameObject* parent)
     :GameObject(parent, "Player"), hModel_(-1),move_(-1)
@@ -24,6 +30,9 @@ void Player::Initialize()
 
     pStage = (Stage*)FindObject("Stage");
     assert(pStage != nullptr);
+
+    pTrap = (Trap*)FindObject("Trap");
+    assert(pTrap != nullptr);
 
     pMove = new Move(pStage);
 
@@ -137,6 +146,8 @@ void Player::Update()
     {
         XMStoreFloat3(&transform_.position_, prevPosition);
     }
+
+    pTrap->IsTrap((int)transform_.position_.x,(int)transform_.position_.z);
     /*
     if (pStage->IsWall((int)transform_.position_.x, (int)transform_.position_.z))
     {

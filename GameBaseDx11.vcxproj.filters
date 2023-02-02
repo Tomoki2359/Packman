@@ -24,6 +24,9 @@
       <UniqueIdentifier>{47a6a3f5-8cfd-436b-8d58-beccd108f3f3}</UniqueIdentifier>
       <Extensions>hlsl</Extensions>
     </Filter>
+    <Filter Include="03Enemy">
+      <UniqueIdentifier>{1e7a4812-7786-42a8-85f0-46718e972d63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\BoxCollider.cpp">
@@ -87,11 +90,19 @@
     <ClCompile Include="PlayScene.cpp" />
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Enemy\EnemyRed.cpp" />
-    <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Aster.cpp" />
+    <ClCompile Include="Enemy\Trap.cpp" />
+    <ClCompile Include="Enemy\Enemy.cpp">
+      <Filter>03Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\EnemyBlack.cpp">
+      <Filter>03Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy\EnemyRed.cpp">
+      <Filter>03Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\BoxCollider.h">
@@ -155,11 +166,19 @@
     <ClInclude Include="PlayScene.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Enemy\EnemyRed.h" />
-    <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Aster.h" />
+    <ClInclude Include="Enemy\Trap.h" />
+    <ClInclude Include="Enemy\Enemy.h">
+      <Filter>03Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\EnemyBlack.h">
+      <Filter>03Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\EnemyRed.h">
+      <Filter>03Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Assets\Shader\Simple2D.hlsl">

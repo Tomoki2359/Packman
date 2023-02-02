@@ -25,5 +25,7 @@ public:
     void RightMove(XMFLOAT3* trans);
 
     void SetSpeed(float s) { speed_ = s; };
+
+    float GetSpeed() { return speed_; };
 };
 

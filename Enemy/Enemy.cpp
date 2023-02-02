@@ -21,9 +21,7 @@ Enemy::~Enemy()
 //初期化
 void Enemy::Initialize()
 {
-    //モデルデータのロード
-    hModel_ = Model::Load("Pacman.fbx");
-    assert(hModel_ >= 0);
+    
 
     pStage = (Stage*)FindObject("Stage");
     assert(pStage != nullptr);

@@ -31,4 +31,6 @@ public:
 
 	//Dij‚Ì’†g‚ğ‰Šú‰»‚·‚é
 	void Reset();
+
+	int RandamMoveDirection(XMFLOAT3 Pos,Stage* pStage,float s, int m);
 };

@@ -7,11 +7,12 @@
 //◆◆◆を管理するクラス
 class Enemy : public GameObject
 {
-    int hModel_;    //モデル番号
 
-    int map_[15][15];
+    //int map_[15][15];
 
 protected:
+    int hModel_;    //モデル番号
+
     Player* pPlayer_;
 
     Stage* pStage;

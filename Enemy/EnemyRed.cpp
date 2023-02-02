@@ -26,6 +26,11 @@ int EnemyRed::EnemyMove()
 
 void EnemyRed::Init()
 {
+    //モデルデータのロード
+    hModel_ = Model::Load("EnemyRed.fbx");
+    assert(hModel_ >= 0);
+
     transform_.position_.x = 13.5f;
     transform_.position_.z = 10.5f;
+    pMove->SetSpeed(0.15f);
 }

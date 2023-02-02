@@ -45,7 +45,7 @@ int Dijkstra::GetDijkstra(XMFLOAT3 Pos_, XMFLOAT3 Des, Stage* pStage)
 		//–Ú“I’n‚É‚½‚Ç‚è’…‚¢‚½‚ç
 		if (Dij_[(int)Des.x][(int)Des.z].count_ != 9999)
 		{
-			ChangeDraw(Des, pStage);
+			//ChangeDraw(Des, pStage);
 			return MoveDirection(Des);
 		}
 	}
@@ -178,4 +178,35 @@ void Dijkstra::Reset()
 			Dij_[x][z].count_ = 9999;
 		}
 	}
+}
+
+int Dijkstra::RandamMoveDirection(XMFLOAT3 Pos,Stage* pStage,float s,int m)
+{
+	int c = 0;
+	int box[4];
+	if (pStage->GetType(Pos.x + 1, Pos.z) != 1 && m != LEFT_MOVE)
+	{
+		box[c] = RIGHT_MOVE;
+		c++;
+	}
+	if (pStage->GetType(Pos.x - 1, Pos.z) != 1 && m != RIGHT_MOVE)
+	{
+		box[c] = LEFT_MOVE;
+		c++;
+	}
+	if (pStage->GetType(Pos.x, Pos.z + 1) != 1 && m != BACK_MOVE)
+	{
+		box[c] = PREVIOUS_MOVE;
+		c++;
+	}
+	if (pStage->GetType(Pos.x, Pos.z - 1) != 1 && m != PREVIOUS_MOVE)
+	{
+		box[c] = BACK_MOVE;
+		c++;
+	}
+	if (c > 0)
+	{
+		return (box[rand() % c]);
+	}
+	return m;
 }

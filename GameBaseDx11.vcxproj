@@ -128,7 +128,9 @@
     <ClCompile Include="Aster.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
+    <ClCompile Include="Enemy\EnemyBlack.cpp" />
     <ClCompile Include="Enemy\EnemyRed.cpp" />
+    <ClCompile Include="Enemy\Trap.cpp" />
     <ClCompile Include="Engine\Audio.cpp" />
     <ClCompile Include="Engine\BoxCollider.cpp" />
     <ClCompile Include="Engine\Camera.cpp" />
@@ -158,7 +160,9 @@
     <ClInclude Include="Aster.h" />
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Enemy\Enemy.h" />
+    <ClInclude Include="Enemy\EnemyBlack.h" />
     <ClInclude Include="Enemy\EnemyRed.h" />
+    <ClInclude Include="Enemy\Trap.h" />
     <ClInclude Include="Engine\Audio.h" />
     <ClInclude Include="Engine\BoxCollider.h" />
     <ClInclude Include="Engine\Camera.h" />
