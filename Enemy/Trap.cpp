@@ -22,16 +22,8 @@ Trap::~Trap()
 //‰Šú‰»
 void Trap::Initialize()
 {
-	for (int x = 0; x < 15; x++)
-	{
-		for (int z = 0; z < 15; z++)
-		{
-			map_[x][z] = false;
-		}
-	}
 	pStage = (Stage*)FindObject("Stage");
 	assert(pStage != nullptr);
-
 }
 
 //XV
@@ -51,7 +43,6 @@ void Trap::Release()
 
 void Trap::SetTrap(int x, int y)
 {
-	map_[x][y] = true;
 	pStage->SetType(x,y,3);
 	for (auto itr = pos_.begin(); itr != pos_.end(); itr++)
 	{
@@ -61,7 +52,7 @@ void Trap::SetTrap(int x, int y)
 			//y‚Ì•û‚ª¬‚³‚¢‚È‚ç
 			if ((*itr).second > y)
 			{
-				pos_.insert(--itr,{ x,y });
+				pos_.insert(itr,{ x,y });
 				return;
 			}
 			//y‚à“¯‚¶‚È‚ç
@@ -73,40 +64,37 @@ void Trap::SetTrap(int x, int y)
 		//x‚Ì‚Ù‚¤‚ª¬‚³‚­‚È‚Á‚½‚ç
 		else if ((*itr).first > x)
 		{
-			pos_.insert(--itr, { x,y });
+			pos_.insert(itr, { x,y });
 			return;
 		}
 	}
+	pos_.push_back({x,y});
 }
 
 bool Trap::IsTrap(int x, int y)
 {
-	if (map_[x][y])
-	{
-		pEnemy = (EnemyBlack*)FindObject("EnemyBlack");
-		assert(pEnemy != nullptr);
-		pEnemy->SetDirection(x, y);
-		map_[x][y] = false;
-		pStage->SetType(x, y, 0);
-
-		return true;
-	}
 	for (auto itr = pos_.begin(); itr != pos_.end(); itr++)
 	{
 		if ((*itr).first == x)
 		{
 			if ((*itr).second == y)
 			{
+				pEnemy = (EnemyBlack*)FindObject("EnemyBlack");
+				assert(pEnemy != nullptr);
+				pEnemy->SetDirection(x, y);
+				pStage->SetType(x, y, 0);
+				pos_.erase(itr);
 
+				return true;
 			}
 			else if ((*itr).second > y)
 			{
-
+				break;
 			}
 		}
 		else if ((*itr).first > x)
 		{
-
+			break;
 		}
 	}
 	return false;

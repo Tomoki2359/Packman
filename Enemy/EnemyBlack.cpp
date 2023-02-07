@@ -47,7 +47,7 @@ int EnemyBlack::EnemyMove()
         movecounter_--;
         if (movecounter_ < 0)
         {
-            movecounter_ = 5;
+            movecounter_ = 10;
             move = pDij_->RandamMoveDirection(transform_.position_, pStage, pMove->GetSpeed(), move);
         }
         return move;

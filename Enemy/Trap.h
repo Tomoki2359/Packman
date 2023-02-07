@@ -4,8 +4,7 @@
 //◆◆◆を管理するクラス
 class Trap : public GameObject
 {
-    bool map_[15][15];
-    std::list<std::pair<int, int>> pos_;
+    std::list<std::pair<int, int>> pos_;    //トラップの位置
 public:
     //コンストラクタ
     Trap(GameObject* parent);

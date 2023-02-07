@@ -184,6 +184,7 @@ void Dijkstra::Reset()
 	}
 }
 
+//“®‚«‚ğ‚¨”C‚¹‚·‚é
 int Dijkstra::RandamMoveDirection(XMFLOAT3 Pos,Stage* pStage,float s,int m)
 {
 	int c = 0;
@@ -210,6 +211,7 @@ int Dijkstra::RandamMoveDirection(XMFLOAT3 Pos,Stage* pStage,float s,int m)
 	}
 	if (c > 0)
 	{
+		srand((unsigned int)time(NULL));
 		return (box[rand() % c]);
 	}
 	return m;
