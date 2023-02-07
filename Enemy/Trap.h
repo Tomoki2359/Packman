@@ -5,7 +5,7 @@
 class Trap : public GameObject
 {
     bool map_[15][15];
-    bool isTrap_;
+    std::list<std::pair<int, int>> pos_;
 public:
     //コンストラクタ
     Trap(GameObject* parent);
@@ -25,7 +25,7 @@ public:
     //開放
     void Release() override;
 
-    void SetTrap(int x, int y) { map_[x][y] = true; };
+    void SetTrap(int x, int y);
 
     bool IsTrap(int x, int y);
 };

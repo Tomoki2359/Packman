@@ -92,7 +92,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Dijkstra.cpp" />
-    <ClCompile Include="Aster.cpp" />
     <ClCompile Include="Enemy\Trap.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp">
       <Filter>03Enemy</Filter>
@@ -168,7 +167,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Dijkstra.h" />
-    <ClInclude Include="Aster.h" />
     <ClInclude Include="Enemy\Trap.h" />
     <ClInclude Include="Enemy\Enemy.h">
       <Filter>03Enemy</Filter>

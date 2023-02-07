@@ -2,26 +2,25 @@
 #include "../Engine/Model.h"
 #include "../Engine/Input.h"
 #include "../Dijkstra.h"
-#include "../Aster.h"
+#include "../Engine/Global.h"
 
 //コンストラクタ
 EnemyRed::EnemyRed(GameObject* parent)
     :Enemy(parent, "EnemyRed")
 {
     pDij_ = new Dijkstra();
-    pAst_ = new Aster();
 }
 
 //デストラクタ
 EnemyRed::~EnemyRed()
 {
+    SAFE_DELETE(pDij_);
 }
 
 int EnemyRed::EnemyMove()
 {
     
     return pDij_->GetDijkstra(pPlayer_->GetPosition(), transform_.position_,pStage);
-    //return pAst_->GetAster(transform_.position_, pPlayer_->GetPosition(), pStage);
 }
 
 void EnemyRed::Init()

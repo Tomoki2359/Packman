@@ -14,8 +14,8 @@ PlayScene::PlayScene(GameObject* parent)
 //‰Šú‰»
 void PlayScene::Initialize()
 {
-	Instantiate<Trap>(this);
 	Instantiate<Stage>(this);
+	Instantiate<Trap>(this);
 	Instantiate<Player>(this);
 	Instantiate<EnemyRed>(this);
 	Instantiate<EnemyBlack>(this);

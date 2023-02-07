@@ -32,7 +32,7 @@ int Dijkstra::GetDijkstra(XMFLOAT3 Pos_, XMFLOAT3 Des, Stage* pStage)
 			else
 			{
 				Dij_[x][z].Dis_ = abs((Pos_.x - x + Pos_.z - z));
-				pStage->SetType(x, z, 0);
+				//pStage->SetType(x, z, 0);
 			}
 		}
 	}
@@ -66,6 +66,7 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 	{
 	case 0:
 	case 2:
+	case 3:
 		if (Dij_[(int)Pos.x + 1][(int)Pos.z].count_ > count)
 		{
 			Dij_[(int)Pos.x + 1][(int)Pos.z].count_ = count;
@@ -80,6 +81,7 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 	{
 	case 0:
 	case 2:
+	case 3:
 		if (Dij_[(int)Pos.x - 1][(int)Pos.z].count_ > count)
 		{
 			Dij_[(int)Pos.x - 1][(int)Pos.z].count_ = count;
@@ -94,6 +96,7 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 	{
 	case 0:
 	case 2:
+	case 3:
 		if (Dij_[(int)Pos.x][(int)Pos.z + 1].count_ > count)
 		{
 			Dij_[(int)Pos.x][(int)Pos.z + 1].count_ = count;
@@ -108,6 +111,7 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 	{
 	case 0:
 	case 2:
+	case 3:
 		if (Dij_[(int)Pos.x][(int)Pos.z - 1].count_ > count)
 		{
 			Dij_[(int)Pos.x][(int)Pos.z - 1].count_ = count;
