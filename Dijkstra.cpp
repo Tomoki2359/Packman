@@ -38,8 +38,9 @@ int Dijkstra::GetDijkstra(XMFLOAT3 Pos_, XMFLOAT3 Des, Stage* pStage)
 	}
 
 	//目的地についていない場合の処理
-	if (Des.x != Pos_.x || Des.z != Pos_.z)
+	if ((int)Des.x != (int)Pos_.x || (int)Des.z != (int)Pos_.z)
 	{
+		Dij_[(int)Pos_.x][(int)Pos_.z].count_ = 0;
 		SearchDistance(Pos_, 1, pStage,Des);
 		
 		//目的地にたどり着いたら
@@ -64,62 +65,54 @@ void Dijkstra::SearchDistance(XMFLOAT3 Pos, int count, Stage* pStage, XMFLOAT3 D
 	//一歩先が通れるかどうか
 	switch (pStage->GetType(Pos.x + 1, Pos.z))
 	{
-	case 0:
-	case 2:
-	case 3:
+	case 1:
+		Dij_[(int)Pos.x + 1][(int)Pos.z].count_ = 9999;
+		break;
+	default:
 		if (Dij_[(int)Pos.x + 1][(int)Pos.z].count_ > count)
 		{
 			Dij_[(int)Pos.x + 1][(int)Pos.z].count_ = count;
 			SearchDistance(XMFLOAT3(Pos.x + 1,Pos.y,Pos.z),count + 1, pStage,Des);
 		}
-			break;
-	case 1:
-		Dij_[(int)Pos.x + 1][(int)Pos.z].count_ = 9999;
-		break;
+	break;
 	}
 	switch (pStage->GetType(Pos.x - 1, Pos.z))
 	{
-	case 0:
-	case 2:
-	case 3:
+	case 1:
+		Dij_[(int)Pos.x - 1][(int)Pos.z].count_ = 9999;
+		break;
+	default:
 		if (Dij_[(int)Pos.x - 1][(int)Pos.z].count_ > count)
 		{
 			Dij_[(int)Pos.x - 1][(int)Pos.z].count_ = count;
 			SearchDistance(XMFLOAT3(Pos.x - 1, Pos.y, Pos.z), count + 1, pStage,Des);
 		}
-			break;
-	case 1:
-		Dij_[(int)Pos.x - 1][(int)Pos.z].count_ = 9999;
 		break;
 	}
 	switch (pStage->GetType(Pos.x, Pos.z + 1))
 	{
-	case 0:
-	case 2:
-	case 3:
+	case 1:
+		Dij_[(int)Pos.x][(int)Pos.z + 1].count_ = 9999;
+		break;
+	default:
 		if (Dij_[(int)Pos.x][(int)Pos.z + 1].count_ > count)
 		{
 			Dij_[(int)Pos.x][(int)Pos.z + 1].count_ = count;
 			SearchDistance(XMFLOAT3(Pos.x, Pos.y, Pos.z + 1), count + 1, pStage,Des);
 		}
-			break;
-	case 1:
-		Dij_[(int)Pos.x][(int)Pos.z + 1].count_ = 9999;
 		break;
 	}
 	switch (pStage->GetType(Pos.x, Pos.z - 1))
 	{
-	case 0:
-	case 2:
-	case 3:
+	case 1:
+		Dij_[(int)Pos.x][(int)Pos.z - 1].count_ = 9999;
+		break;
+	default:
 		if (Dij_[(int)Pos.x][(int)Pos.z - 1].count_ > count)
 		{
 			Dij_[(int)Pos.x][(int)Pos.z - 1].count_ = count;
 			SearchDistance(XMFLOAT3(Pos.x, Pos.y, Pos.z - 1), count + 1, pStage,Des);
 		}
-			break;
-	case 1:
-		Dij_[(int)Pos.x][(int)Pos.z - 1].count_ = 9999;
 		break;
 	}
 }

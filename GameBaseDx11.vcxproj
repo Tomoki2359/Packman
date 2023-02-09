@@ -128,6 +128,7 @@
     <ClCompile Include="Dijkstra.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\EnemyBlack.cpp" />
+    <ClCompile Include="Enemy\EnemyBlue.cpp" />
     <ClCompile Include="Enemy\EnemyRed.cpp" />
     <ClCompile Include="Enemy\Trap.cpp" />
     <ClCompile Include="Engine\Audio.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Dijkstra.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\EnemyBlack.h" />
+    <ClInclude Include="Enemy\EnemyBlue.h" />
     <ClInclude Include="Enemy\EnemyRed.h" />
     <ClInclude Include="Enemy\Trap.h" />
     <ClInclude Include="Engine\Audio.h" />

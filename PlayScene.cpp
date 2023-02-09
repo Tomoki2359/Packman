@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Enemy/EnemyRed.h"
 #include "Enemy/EnemyBlack.h"
+#include "Enemy/EnemyBlue.h"
 #include "Enemy/Trap.h"
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
@@ -18,6 +19,7 @@ void PlayScene::Initialize()
 	Instantiate<Trap>(this);
 	Instantiate<Player>(this);
 	Instantiate<EnemyRed>(this);
+	Instantiate<EnemyBlue>(this);
 	Instantiate<EnemyBlack>(this);
 	Camera::SetPosition(XMFLOAT3{ 7,20,6 });
 	Camera::SetTarget(XMFLOAT3{ 7,0,7 });

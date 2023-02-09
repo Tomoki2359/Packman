@@ -5,7 +5,6 @@
 //■■シーンを管理するクラス
 class Dijkstra
 {
-
 	struct Dij
 	{
 		int Dis_;	//距離

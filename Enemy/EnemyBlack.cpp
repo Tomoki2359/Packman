@@ -33,13 +33,12 @@ int EnemyBlack::EnemyMove()
     if (dir.first > 0)
     {
         pMove->SetSpeed(0.35f);
-        move = pDij_->GetDijkstra(XMFLOAT3{(float)dir.first,0.0f,(float)dir.second}, transform_.position_, pStage);
+        move = pDij_->GetDijkstra(XMFLOAT3{dir.first,0.0f,dir.second}, transform_.position_, pStage);
         //–Ú“I’n‚É“ž’…‚µ‚½‚ç
-        if ((int)(transform_.position_.x) == dir.first && (int)(transform_.position_.z) == dir.second)
+        if ((int)transform_.position_.x == (int)dir.first && (int)transform_.position_.z == (int)dir.second)
         {
             dir.first = -1;
         }
-        return move;
     }
     else
     {
@@ -50,9 +49,8 @@ int EnemyBlack::EnemyMove()
             movecounter_ = 10;
             move = pDij_->RandamMoveDirection(transform_.position_, pStage, pMove->GetSpeed(), move);
         }
-        return move;
     }
-
+    return move;
     //return pAst_->GetAster(transform_.position_, pPlayer_->GetPosition(), pStage);
 }
 

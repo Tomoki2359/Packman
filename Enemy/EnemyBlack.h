@@ -14,7 +14,7 @@ class EnemyBlack : public Enemy
     int move;
     int movecounter_;
     const int maxCounter_;
-    std::pair<int, int> dir;
+    std::pair<float, float> dir;
 public:
     //コンストラクタ
     EnemyBlack(GameObject* parent);
