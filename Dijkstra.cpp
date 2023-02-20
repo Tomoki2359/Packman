@@ -1,5 +1,6 @@
 #include "Dijkstra.h"
 #include "Engine/Model.h"
+#include "Engine/Input.h"
 #include "Move.h"
 #include <cstdlib>
 
@@ -29,10 +30,14 @@ int Dijkstra::GetDijkstra(XMFLOAT3 Pos_, XMFLOAT3 Des, Stage* pStage)
 			{
 				Dij_[x][z].Dis_ = -1;
 			}
+			else if(pStage->GetType(x, z) == 2)
+			{
+				Dij_[x][z].Dis_ = abs((Pos_.x - x + Pos_.z - z));
+				pStage->SetType(x, z, 0);
+			}
 			else
 			{
 				Dij_[x][z].Dis_ = abs((Pos_.x - x + Pos_.z - z));
-				//pStage->SetType(x, z, 0);
 			}
 		}
 	}
@@ -46,7 +51,8 @@ int Dijkstra::GetDijkstra(XMFLOAT3 Pos_, XMFLOAT3 Des, Stage* pStage)
 		//–Ú“I’n‚É‚½‚Ç‚è’…‚¢‚½‚ç
 		if (Dij_[(int)Des.x][(int)Des.z].count_ != 9999)
 		{
-			//ChangeDraw(Des, pStage);
+			if(Input::IsKey(DIK_SPACE))
+			ChangeDraw(Des, pStage);
 			return MoveDirection(Des);
 		}
 	}
