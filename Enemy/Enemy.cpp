@@ -79,7 +79,7 @@ void Enemy::Update()
         }
 
         //‚»‚Ì•ª‰ñ“]‚³‚¹‚é
-        transform_.rotate_.y = angle * 180.0f / 3, 14;
+        transform_.rotate_.y = angle * 180.0f / 3.14;
     }
 
     ////•Ç‚Æ‚ÌÕ“Ë”»’è
