@@ -26,10 +26,16 @@ public:
 	//引数:　第一引数: 現在地
 	void ChangeDraw(XMFLOAT3 Pos, Stage* pStage);
 
+	//動く方向を決める
+	//引数：現在地
+	//戻り値：動く方向
 	int MoveDirection(XMFLOAT3 Pos);
 
 	//Dijの中身を初期化する
 	void Reset();
 
-	int RandamMoveDirection(XMFLOAT3 Pos,Stage* pStage,float s, int m);
+	//移動する反対側以外のランダムな方向に移動する
+	//引数:　第一引数：現在地　第二引数：ステージ　第三引数：動く方向
+	//戻り値：動く方向
+	int RandamMoveDirection(XMFLOAT3 Pos,Stage* pStage, int m);
 };

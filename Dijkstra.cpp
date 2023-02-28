@@ -184,7 +184,7 @@ void Dijkstra::Reset()
 }
 
 //“®‚«‚ð‚¨”C‚¹‚·‚é
-int Dijkstra::RandamMoveDirection(XMFLOAT3 Pos,Stage* pStage,float s,int m)
+int Dijkstra::RandamMoveDirection(XMFLOAT3 Pos,Stage* pStage,int m)
 {
 	int c = 0;
 	int box[4];

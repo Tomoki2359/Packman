@@ -18,7 +18,7 @@ void PlayScene::Initialize()
 	Instantiate<Stage>(this);
 	Instantiate<Trap>(this);
 	Instantiate<Player>(this);
-	//Instantiate<EnemyRed>(this);
+	Instantiate<EnemyRed>(this);
 	Instantiate<EnemyBlue>(this);
 	Instantiate<EnemyBlack>(this);
 	Camera::SetPosition(XMFLOAT3{ 7,20,6 });

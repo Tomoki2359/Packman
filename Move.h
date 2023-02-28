@@ -10,7 +10,7 @@ enum MOVE
 
 class Move
 {
-    float speed_;
+    float speed_;   //動くスピード
 public:
     Move(Stage* pStage);
 

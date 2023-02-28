@@ -44,12 +44,20 @@ void Trap::Release()
 void Trap::SetTrap(int x, int y)
 {
 	pStage->SetType(x,y,3);
+
+	//リストが空なら
+	if (pos_.empty())
+	{
+		pos_.push_back({ x,y });
+		return;
+	}
+
 	for (auto itr = pos_.begin(); itr != pos_.end(); itr++)
 	{
 		//xが同じなら
 		if ((*itr).first == x)
 		{
-			//yの方が小さいなら
+			//リスト内のyのほうが大きくなったら差し込む
 			if ((*itr).second > y)
 			{
 				pos_.insert(itr,{ x,y });
@@ -61,22 +69,26 @@ void Trap::SetTrap(int x, int y)
 				return;
 			}
 		}
-		//xのほうが小さくなったら
+		//リスト内のxのほうが大きくなったら差し込む
 		else if ((*itr).first > x)
 		{
 			pos_.insert(itr, { x,y });
 			return;
 		}
 	}
-	pos_.push_back({x,y});
+
+	//リスト内のxとyの両方が小さいなら最後に入れる
+	pos_.push_back({ x,y });
 }
 
 bool Trap::IsTrap(int x, int y)
 {
 	for (auto itr = pos_.begin(); itr != pos_.end(); itr++)
 	{
+		//xが同じなら
 		if ((*itr).first == x)
 		{
+			//yが同じなら
 			if ((*itr).second == y)
 			{
 				pEnemy = (EnemyBlack*)FindObject("EnemyBlack");
@@ -87,11 +99,13 @@ bool Trap::IsTrap(int x, int y)
 
 				return true;
 			}
+			//リスト内のyのほうが大きくなったら抜ける
 			else if ((*itr).second > y)
 			{
 				break;
 			}
 		}
+		//リスト内のxのほうが大きくなったら抜ける
 		else if ((*itr).first > x)
 		{
 			break;

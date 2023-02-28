@@ -21,8 +21,6 @@ Enemy::~Enemy()
 //‰Šú‰»
 void Enemy::Initialize()
 {
-    
-
     pStage = (Stage*)FindObject("Stage");
     assert(pStage != nullptr);
 
